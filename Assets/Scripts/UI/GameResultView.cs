@@ -1,0 +1,54 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class GameResultView : MonoBehaviour
+{
+    [SerializeField] private TMP_Text resultText;
+    [SerializeField] private GameObject restartLabels;
+
+    void Start()
+    {
+        resultText.gameObject.SetActive(false);
+
+        GameManager.Instance.OnWin += ShowWin;
+        GameManager.Instance.OnLose += ShowLose;
+
+        restartLabels.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        if ( GameManager.Instance == null) return;
+        
+        GameManager.Instance.OnWin -= ShowWin;
+        
+        GameManager.Instance.OnLose -= ShowLose;
+    }
+    private void ShowWin(int total)
+    {
+        resultText.text = $"W W! \nÚÓÚ‡Î: {total}tk";
+
+        resultText.gameObject.SetActive(true);
+
+        restartLabels.SetActive(true);
+    }
+    private void ShowLose()
+    {
+        resultText.text = "“»À‹“!";
+
+        resultText.gameObject.SetActive(true);
+
+        restartLabels.SetActive(true);
+    }
+    public void GoToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
+}

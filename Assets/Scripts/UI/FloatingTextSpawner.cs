@@ -17,7 +17,19 @@ public class FloatingTextSpawner : MonoBehaviour
         }
         Instance = this;
     }
+    public void Spawn(Vector3 worldPos)
+    {
+        if (mainCamera == null) mainCamera = Camera.main;
 
+        Vector3 screenPos = mainCamera.WorldToScreenPoint(worldPos);
+
+        var instance = Instantiate(prefab, canvas.transform);
+        instance.transform.position = screenPos;
+
+        instance.Setup(FallingObjectType.Bad);
+
+        Debug.Log("Spawn Worked!" + worldPos.x + " " + worldPos.y);
+    }
     public void Spawn(int amount, Vector3 worldPos, FallingObjectType type)
     {
         if (mainCamera == null) mainCamera = Camera.main;

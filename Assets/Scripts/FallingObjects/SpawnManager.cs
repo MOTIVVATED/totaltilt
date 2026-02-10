@@ -91,5 +91,7 @@ public class SpawnManager : MonoBehaviour
         falling.OnCollected += ScoreManager.Instance.HandleCollected;
         falling.OnCollected += TiltManager.Instance.HandleCollected;
         falling.OnMissed += TiltManager.Instance.HandleMissed;
+
+        falling.OnSmashed += SmashManager.Instance.HandleSmashed;
     }
 }

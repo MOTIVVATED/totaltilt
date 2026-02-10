@@ -17,6 +17,17 @@ public class FloatingScoreText : MonoBehaviour
     private float timer;
     private Color startColor;
 
+    public void Setup(FallingObjectType type)
+    {
+        switch (type)
+        {
+            case FallingObjectType.Bad:
+                text.text = "BAN";
+                text.color = Color.red;
+                Debug.Log(text.text);
+                break;
+        }
+    }
     public void Setup(int amount, FallingObjectType type)
     {
 

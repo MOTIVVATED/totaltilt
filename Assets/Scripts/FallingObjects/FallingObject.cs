@@ -14,6 +14,8 @@ public class FallingObject : MonoBehaviour
     public event Action<FallingObjectType> OnCollected;
     public event Action<FallingObjectType> OnMissed;
 
+    public event Action<FallingObjectType> OnSmashed;
+
     private void Awake()
     {
         if (spriteRenderer == null)
@@ -56,6 +58,7 @@ public class FallingObject : MonoBehaviour
     }
     public void Smash()
     {
+        OnSmashed?.Invoke(objectType);
         Destroy(gameObject);
     }
 }

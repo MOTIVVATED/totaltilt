@@ -8,8 +8,6 @@ public class SmashManager : MonoBehaviour
 
     private GameObject bad;
 
-    //[SerializeField] private GameObject player;
-
     public event Action OnSmashed;
     
     private void Awake()
@@ -29,7 +27,6 @@ public class SmashManager : MonoBehaviour
                 OnSmashed?.Invoke();
                 bad = GameObject.FindGameObjectWithTag("bad");
                 floatingTextSpawner.Spawn(bad.transform.position);
-                Debug.Log("HandleSmashed worked");
                 break;
         }
     }

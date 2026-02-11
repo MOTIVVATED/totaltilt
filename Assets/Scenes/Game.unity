@@ -2933,7 +2933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   floatingTextSpawner: {fileID: 770664212}
-  bad: {fileID: 6320535281327703712, guid: 9aad29cb760227948848e32f3678d5f5, type: 3}
 --- !u!1 &1173501689
 GameObject:
   m_ObjectHideFlags: 0

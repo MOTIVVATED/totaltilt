@@ -14,9 +14,22 @@ public class PlayerSmashing : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Smash();
+            SmashFirst();
         }
     }
+    // smashing first object by tag
+    private void SmashFirst()
+    {
+        GameObject bad = GameObject.FindGameObjectWithTag("bad");
+        
+        if (bad == null)  return;
+
+        FallingObject fallingObject = bad.GetComponent<FallingObject>();
+
+        if (fallingObject != null) fallingObject.Smash();
+    }
+
+    // smashing all objects in the area by layer
     private void Smash()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(

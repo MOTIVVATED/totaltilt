@@ -27,8 +27,6 @@ public class FloatingTextSpawner : MonoBehaviour
         instance.transform.position = screenPos;
 
         instance.Setup(FallingObjectType.Bad);
-
-        Debug.Log("Spawn Worked!" + worldPos.x + " " + worldPos.y);
     }
     public void Spawn(int amount, Vector3 worldPos, FallingObjectType type)
     {

@@ -23,8 +23,7 @@ public class FloatingScoreText : MonoBehaviour
         {
             case FallingObjectType.Bad:
                 text.text = "BAN";
-                text.color = Color.red;
-                Debug.Log(text.text);
+                text.color = Color.green;
                 break;
         }
     }

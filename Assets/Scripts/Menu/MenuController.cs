@@ -7,11 +7,11 @@ public class MenuController : MonoBehaviour
 
     public void Start()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 0.4f;
     }
     public void Play()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 0.4f;
         SceneManager.LoadScene(gameSceneName);
     }
     public void Quit()

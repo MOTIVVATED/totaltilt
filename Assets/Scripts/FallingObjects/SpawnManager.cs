@@ -25,6 +25,8 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] private Sprite[] badSprites;
 
+    [SerializeField] private bool subscribeOnEvents;
+
     private Coroutine[] routines;
 
     private float nextAllowedSpawnTime;
@@ -75,6 +77,7 @@ public class SpawnManager : MonoBehaviour
     }
     private void Spawn(FallingObject prefab)
     {
+        Debug.Log("Timescale: " + Time.timeScale);
         FallingObject falling = Instantiate(
             prefab, spawnPoint.position, Quaternion.identity);
 
@@ -87,11 +90,12 @@ public class SpawnManager : MonoBehaviour
         {
             falling.SetSprite(badSprites[Random.Range(0, badSprites.Length)]);
         }
-
-        falling.OnCollected += ScoreManager.Instance.HandleCollected;
-        falling.OnCollected += TiltManager.Instance.HandleCollected;
-        falling.OnMissed += TiltManager.Instance.HandleMissed;
-
-        falling.OnSmashed += SmashManager.Instance.HandleSmashed;
+        if (subscribeOnEvents)
+        {
+            falling.OnCollected += ScoreManager.Instance.HandleCollected;
+            falling.OnCollected += TiltManager.Instance.HandleCollected;
+            falling.OnMissed += TiltManager.Instance.HandleMissed;
+            falling.OnSmashed += SmashManager.Instance.HandleSmashed;
+        }
     }
 }

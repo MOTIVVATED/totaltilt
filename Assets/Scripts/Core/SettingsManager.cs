@@ -19,6 +19,7 @@ public class SettingsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Load();
+        Debug.Log("[Settings] Awake");
     }
 
     public void SetMusic(float value)
@@ -28,6 +29,14 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.Save();
 
         // add audioManager later!!!
+
+        // adding =)
+        var applier = FindFirstObjectByType<MusicVolumeApplier>();
+        if (applier != null) applier.Apply();
+
+        Debug.Log("[Settings] Saved");
+        Debug.Log("[Settings] PlayerPrefs value = " + PlayerPrefs.GetFloat("settings_music", -1f));
+
     }
     public void SetSfx(float value)
     {

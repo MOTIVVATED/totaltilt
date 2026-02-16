@@ -45,7 +45,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6320535281327703712}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &895011984086562689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   text: {fileID: 895011984086562689}
-  floatUpSpeed: 228
-  lifetime: 2
-  fadeDuration: 1
+  floatUpSpeed: 444
+  lifetime: 0.6
+  fadeDuration: 0.1

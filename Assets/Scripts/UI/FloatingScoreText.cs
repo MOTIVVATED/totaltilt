@@ -4,9 +4,9 @@ using UnityEngine;
 public class FloatingScoreText : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
-    [SerializeField] private float floatUpSpeed = 80f;
-    [SerializeField] private float lifetime = 0.8f;
-    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float floatUpSpeed;
+    [SerializeField] private float lifetime;
+    [SerializeField] private float fadeDuration;
 
     Color32 grey =      new Color32(147, 147, 147, 255);
     Color32 paleBlue =  new Color32(102, 153, 170, 255);

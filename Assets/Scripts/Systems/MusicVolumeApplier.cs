@@ -27,7 +27,7 @@ public class MusicVolumeApplier : MonoBehaviour
         float volume = 1f;
 
         if (SettingsManager.Instance != null)
-            volume = SettingsManager.Instance.musiVolume;
+            volume = SettingsManager.Instance.musicVolume;
         else
             volume = PlayerPrefs.GetFloat("settings_music", 1f);
 

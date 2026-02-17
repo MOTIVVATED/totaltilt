@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -8,47 +9,51 @@ public class SettingsManager : MonoBehaviour
     private const string SfxKey = "settings_sfx";
     private const string DarkModeKey = "settings_darkmode";
 
-    public float musiVolume { get; private set; } = 1.0f;
-    public float sfxVolume { get; private set; } = 1.0f;
-    public bool darkMode { get; private set; } = true;
+    public event Action OnChanged;
+
+    public float musicVolume { get; private set; } = 1f;
+    public float sfxVolume { get; private set; } = 1f;
+    public bool darkModeOn { get; private set; } = true;
 
     private void Awake()
     {
+        Debug.Log("[Settings] Awake");
+
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
         Load();
-        Debug.Log("[Settings] Awake");
     }
 
     public void SetMusic(float value)
     {
-        musiVolume = Mathf.Clamp01(value);
-        PlayerPrefs.SetFloat(MusicKey, musiVolume);
+        musicVolume = Mathf.Clamp01(value);
+        PlayerPrefs.SetFloat(MusicKey, musicVolume);
         PlayerPrefs.Save();
 
         // add audioManager later!!!
-
         // adding =)
-        var applier = FindFirstObjectByType<MusicVolumeApplier>();
-        if (applier != null) applier.Apply();
+        //var applier = FindFirstObjectByType<MusicVolumeApplier>();
+        //if (applier != null) applier.Apply();
 
         Debug.Log("[Settings] Saved");
         Debug.Log("[Settings] PlayerPrefs value = " + PlayerPrefs.GetFloat("settings_music", -1f));
-
+        OnChanged?.Invoke();
     }
     public void SetSfx(float value)
     {
         sfxVolume = Mathf.Clamp01(value);
         PlayerPrefs.SetFloat(SfxKey, sfxVolume);
         PlayerPrefs.Save();
+        OnChanged?.Invoke();
     }
     public void SetDarkMode(bool on)
     {
-        darkMode = on;
+        darkModeOn = on;
         PlayerPrefs.SetInt(DarkModeKey, on ? 1 : 0);
         PlayerPrefs.Save();
+        OnChanged?.Invoke();
     }
     public void ResetToDefaults()
     {
@@ -58,8 +63,10 @@ public class SettingsManager : MonoBehaviour
     }
     private void Load()
     {
-        musiVolume = PlayerPrefs.GetFloat(MusicKey, 1f);
+        musicVolume = PlayerPrefs.GetFloat(MusicKey, 1f);
         sfxVolume = PlayerPrefs.GetFloat(SfxKey, 1f);
-        darkMode = PlayerPrefs.GetInt(DarkModeKey, 1) == 1;
+        darkModeOn = PlayerPrefs.GetInt(DarkModeKey, 1) == 1;
+
+        Debug.Log($"[Settings] Load music={musicVolume} sfx={sfxVolume} vibro={darkModeOn}");
     }
 }

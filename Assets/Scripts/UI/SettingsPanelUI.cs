@@ -53,12 +53,12 @@ public class SettingsPanelUI : MonoBehaviour
 
         ignoreEvents = true;
 
-        musicSlider.value = SettingsManager.Instance.musiVolume;
+        musicSlider.value = SettingsManager.Instance.musicVolume;
         sfxSlider.value = SettingsManager.Instance.sfxVolume;
 
         if (darkModeToggle != null)
         {
-            darkModeToggle.isOn = SettingsManager.Instance.darkMode;
+            darkModeToggle.isOn = SettingsManager.Instance.darkModeOn;
         }
         ignoreEvents = false;
     }

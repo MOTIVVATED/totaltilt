@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,22 @@ public class SettingsPanelUI : MonoBehaviour
     {
         SyncFromSettings();
     }
+
+    private void Awake()
+    {
+        musicSlider.onValueChanged.RemoveAllListeners();
+        musicSlider.onValueChanged.AddListener(OnMusicChanged);
+
+        sfxSlider.onValueChanged.RemoveAllListeners();
+        sfxSlider.onValueChanged.AddListener(OnSfxChanged);
+
+        if (darkModeToggle != null)
+        {
+            darkModeToggle.onValueChanged.RemoveAllListeners();
+            darkModeToggle.onValueChanged.AddListener(OnDarkModeChanged);
+        }
+    }
+
     public void Open()
     {
         panelRoot.SetActive(true);

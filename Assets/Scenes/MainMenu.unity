@@ -1408,6 +1408,7 @@ GameObject:
   - component: {fileID: 949503322}
   - component: {fileID: 949503321}
   - component: {fileID: 949503320}
+  - component: {fileID: 949503323}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -1547,6 +1548,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949503323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949503319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daead88f44c0c9d4cab58c195dee6e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicVolumeApplier
 --- !u!1 &991245822
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,6 +4261,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1781377745}
   - {fileID: 1654825241}
   - {fileID: 1488918361}
   - {fileID: 588128138}
@@ -4256,4 +4270,3 @@ SceneRoots:
   - {fileID: 2080430172}
   - {fileID: 649325908}
   - {fileID: 1354638165}
-  - {fileID: 1781377745}

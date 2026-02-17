@@ -1,11 +1,11 @@
 using UnityEngine;
 using System;
-
+[DefaultExecutionOrder(0)]
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance { get; private set; }
 
-    private const string MusicKey = "settings_music";
+    public const string MusicKey = "settings_music";
     private const string SfxKey = "settings_sfx";
     private const string DarkModeKey = "settings_darkmode";
 
@@ -24,6 +24,7 @@ public class SettingsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Load();
+        //musicVolume = PlayerPrefs.GetFloat(MusicKey, 1f);
     }
 
     public void SetMusic(float value)
@@ -37,8 +38,8 @@ public class SettingsManager : MonoBehaviour
         //var applier = FindFirstObjectByType<MusicVolumeApplier>();
         //if (applier != null) applier.Apply();
 
-        Debug.Log("[Settings] Saved");
-        Debug.Log("[Settings] PlayerPrefs value = " + PlayerPrefs.GetFloat("settings_music", -1f));
+        //Debug.Log("[Settings] Saved");
+        //Debug.Log("[Settings] PlayerPrefs value = " + PlayerPrefs.GetFloat("settings_music", -1f));
         OnChanged?.Invoke();
     }
     public void SetSfx(float value)

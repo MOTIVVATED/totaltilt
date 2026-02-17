@@ -1,26 +1,60 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
-
 public class MusicVolumeApplier : MonoBehaviour
 {
     private AudioSource audioSource;
+    private bool subscribed;
+    //private static MusicVolumeApplier instance;
 
-    private static MusicVolumeApplier instance;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        { Destroy(gameObject); return; }
+        //if (instance != null && instance != this)
+        //{ Destroy(gameObject); return; }
         
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
             
         audioSource = GetComponent<AudioSource>();
-        Apply();
+        ApplyFromPrefs();
+
+        //Apply();
     }
-    private void OnEnable()
+    private void Start()
     {
-        Apply();
+        StartCoroutine(SubscribeWhenReady() );
+    }
+    private IEnumerator SubscribeWhenReady()
+    {
+        while(SettingsManager.Instance == null)
+            yield return null;
+
+        if (subscribed) yield break;
+
+        SettingsManager.Instance.OnChanged += ApplyFromSettings;
+        subscribed = true;
+    }
+    //private void OnEnable()
+    //{
+    //    if (SettingsManager.Instance != null)
+    //        SettingsManager.Instance.OnChanged += ApplyFromSettings;
+    //}
+    private void OnDisable()
+    {
+        if (SettingsManager.Instance != null)
+            SettingsManager.Instance.OnChanged -= ApplyFromSettings;
+    }
+    private void ApplyFromSettings()
+    {
+        audioSource.volume = SettingsManager.Instance.musicVolume;
+        Debug.Log("[Music Apply volume = " + audioSource.volume);
+    }
+    private void ApplyFromPrefs()
+    {
+        float v = PlayerPrefs.GetFloat(SettingsManager.MusicKey, 1f);
+        audioSource.volume = v;
+        Debug.Log("[Music] Apply from prefs volume = " + audioSource.volume);
     }
     public void Apply()
     {

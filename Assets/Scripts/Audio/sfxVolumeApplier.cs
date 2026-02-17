@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
-public class MusicVolumeApplier : MonoBehaviour
+public class sfxVolumeApplier : MonoBehaviour
 {
     private AudioSource audioSource;
     private bool subscribed;
@@ -11,7 +11,6 @@ public class MusicVolumeApplier : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         ApplyFromPrefs();
-
     }
     private void Start()
     {
@@ -24,21 +23,21 @@ public class MusicVolumeApplier : MonoBehaviour
 
         if (subscribed) yield break;
 
-        SettingsManager.Instance.OnMusicChanged += ApplyFromSettings;
+        SettingsManager.Instance.OnSfxChanged += ApplyFromSettings;
         subscribed = true;
     }
     private void OnDisable()
     {
         if (SettingsManager.Instance != null)
-            SettingsManager.Instance.OnMusicChanged -= ApplyFromSettings;
+            SettingsManager.Instance.OnSfxChanged -= ApplyFromSettings;
     }
     private void ApplyFromSettings()
     {
-        audioSource.volume = SettingsManager.Instance.musicVolume;
+        audioSource.volume = SettingsManager.Instance.sfxVolume;
     }
     private void ApplyFromPrefs()
     {
-        float v = PlayerPrefs.GetFloat(SettingsManager.MusicKey, 1f);
+        float v = PlayerPrefs.GetFloat(SettingsManager.SfxKey, 1f);
         audioSource.volume = v;
     }
 }

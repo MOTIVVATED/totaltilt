@@ -53,6 +53,7 @@ public class SettingsPanelUI : MonoBehaviour
     {
         if (ignoreEvents) return;
         SettingsManager.Instance.SetSfx(value);
+        Debug.Log("[Settings] SFX slider changed: " + value);
     }
     public void OnDarkModeChanged(bool on)
     {

@@ -11,7 +11,7 @@ public class FitToCamera : MonoBehaviour
 #if UNITY_EDITOR
     private void Update()
     {
-        if (!Application.isPlaying)
+        //if (!Application.isPlaying)
             Fit();
     }
 #endif

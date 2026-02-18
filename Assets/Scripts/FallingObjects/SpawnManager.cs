@@ -92,9 +92,13 @@ public class SpawnManager : MonoBehaviour
         if (subscribeOnEvents)
         {
             falling.OnCollected += ScoreManager.Instance.HandleCollected;
+
             falling.OnCollected += TiltManager.Instance.HandleCollected;
             falling.OnMissed += TiltManager.Instance.HandleMissed;
+
             falling.OnSmashed += SmashManager.Instance.HandleSmashed;
+
+            falling.OnSmashed += TiltManager.Instance.HandleSmashed;
         }
     }
 }

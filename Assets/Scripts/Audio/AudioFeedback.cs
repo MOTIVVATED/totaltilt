@@ -23,7 +23,7 @@ public class AudioFeedback : MonoBehaviour
         ScoreManager.Instance.OnTK_25_Collected += () => audioSource.PlayOneShot(tip);
         ScoreManager.Instance.OnTK_111_Collected += () => audioSource.PlayOneShot(medium);
 
-        TiltManager.Instance.OnTiltChanged += OnBad;
+        TiltManager.Instance.OnTiltIncreased += OnBad;
     }
 
     private void OnDestroy()
@@ -35,7 +35,7 @@ public class AudioFeedback : MonoBehaviour
         ScoreManager.Instance.OnTK_111_Collected -= () => audioSource.PlayOneShot(medium);
 
         if (TiltManager.Instance != null)
-            TiltManager.Instance.OnTiltChanged -= OnBad;
+            TiltManager.Instance.OnTiltIncreased -= OnBad;
     }
     private void OnBad(int _)
     {

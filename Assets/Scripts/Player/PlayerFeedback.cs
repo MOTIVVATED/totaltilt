@@ -22,7 +22,7 @@ public class PlayerFeedback : MonoBehaviour
             yield return null;
 
         ScoreManager.Instance.OnScoreChanged += OnGood;
-        TiltManager.Instance.OnTiltChanged += OnBad;
+        TiltManager.Instance.OnTiltIncreased += OnBad;
     }
     private void OnDestroy()
     {
@@ -30,7 +30,7 @@ public class PlayerFeedback : MonoBehaviour
             ScoreManager.Instance.OnScoreChanged -= OnGood;
         
         if (TiltManager.Instance != null)
-            TiltManager.Instance.OnTiltChanged -= OnBad;
+            TiltManager.Instance.OnTiltIncreased -= OnBad;
     }
     private void OnGood(int _)
     {

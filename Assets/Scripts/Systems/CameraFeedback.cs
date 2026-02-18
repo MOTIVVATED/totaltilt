@@ -23,7 +23,7 @@ public class CameraFeedback : MonoBehaviour
         while (ScoreManager.Instance == null || TiltManager.Instance == null)
             yield return null;
         ScoreManager.Instance.OnScoreChanged += OnGood;
-        TiltManager.Instance.OnTiltChanged += OnBad;
+        TiltManager.Instance.OnTiltIncreased += OnBad;
     }
     private void OnDestroy()
     {
@@ -31,7 +31,7 @@ public class CameraFeedback : MonoBehaviour
             ScoreManager.Instance.OnScoreChanged -= OnGood;
      
         if (TiltManager.Instance != null)
-            TiltManager.Instance.OnTiltChanged -= OnBad;
+            TiltManager.Instance.OnTiltIncreased -= OnBad;
     }
     private void OnGood(int _)
     {

@@ -27,10 +27,12 @@ public class PlayerSmashing : MonoBehaviour
         FallingObject fallingObject = bad.GetComponent<FallingObject>();
 
         if (fallingObject != null) fallingObject.Smash();
+
+        fallingObject.Smash();
     }
 
-    // smashing all objects in the area by layer
     private void Smash()
+    // smashing all objects in the area by layer
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             transform.position, 

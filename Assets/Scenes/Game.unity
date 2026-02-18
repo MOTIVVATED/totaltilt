@@ -1059,6 +1059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TiltManager
   badCaughtTilt: 5
   goodMissedTilt: 10
+  badSmashedTilt: -1
   timeScalePenalty: 0.8
   maxTilt: 100
   player: {fileID: 437493377}
@@ -3209,10 +3210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bb62cfc20df5d4689f62a73f890ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  gameDuration: 70
+  gameDuration: 120
   initialTimeScale: 0.4
-  timeScaleIncrement: 0.1
-  maxTimeScale: 1.2
+  timeScaleIncrement: 0.2
+  maxTimeScale: 0.6
 --- !u!4 &770664211
 Transform:
   m_ObjectHideFlags: 0
@@ -4448,6 +4449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   floatingTextSpawner: {fileID: 770664212}
+  tiltManager: {fileID: 257669059}
 --- !u!1 &1118846086
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,7 +6104,7 @@ MonoBehaviour:
   ding: {fileID: 8300000, guid: 41c967802af2a6743a053c2ab6856fd4, type: 3}
   tip: {fileID: 8300000, guid: e062935e90cafad46a509c6ece48e844, type: 3}
   medium: {fileID: 8300000, guid: 6124b999dbb05f14ab759173d81b0b29, type: 3}
-  badSound: {fileID: 8300000, guid: 8ad34b491d645a34f869ec672382134c, type: 3}
+  badSound: {fileID: 8300000, guid: 94dc25281b34ac64da0bb783846e0b30, type: 3}
 --- !u!4 &1905031931
 Transform:
   m_ObjectHideFlags: 0
@@ -7058,13 +7060,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicPlaylist
   parts:
-  - {fileID: 8300000, guid: 468a19b2616c25a46892f12f9977270c, type: 3}
-  - {fileID: 8300000, guid: d60718a8c507592408f0420a825dd17e, type: 3}
-  - {fileID: 8300000, guid: 410285fc1f3c152498a6d7087f37099b, type: 3}
-  - {fileID: 8300000, guid: 2212480add3807e47bd2a665d32f814e, type: 3}
-  - {fileID: 8300000, guid: cf27dccabd0d00e45a8f44239899bfb3, type: 3}
-  - {fileID: 8300000, guid: 474bae21b7a724d479cb78ef20edcdaa, type: 3}
-  - {fileID: 8300000, guid: 28c1a7f70bdc736429b9e1fe4d36f715, type: 3}
+  - {fileID: 8300000, guid: 8509c285f3e3936488060339c315b8a3, type: 3}
+  - {fileID: 8300000, guid: 6a74b3d0871dc8445ba914faa65e671a, type: 3}
   source: {fileID: 2051319536}
   dontRepeatSameTwice: 1
 --- !u!82 &2051319536

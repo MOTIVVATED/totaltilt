@@ -5,6 +5,7 @@ public class SmashManager : MonoBehaviour
     public static SmashManager Instance { get; private set; }
 
     [SerializeField] FloatingTextSpawner floatingTextSpawner;
+    [SerializeField] TiltManager tiltManager;
 
     private GameObject bad;
 
@@ -27,6 +28,7 @@ public class SmashManager : MonoBehaviour
                 OnSmashed?.Invoke();
                 bad = GameObject.FindGameObjectWithTag("bad");
                 floatingTextSpawner.Spawn(bad.transform.position);
+                //tiltManager.HandleSmashed(type);
                 break;
         }
     }

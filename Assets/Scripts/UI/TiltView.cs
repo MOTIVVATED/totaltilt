@@ -15,13 +15,13 @@ public class TiltView : MonoBehaviour
         while (TiltManager.Instance == null)
             yield return null;
 
-        TiltManager.Instance.OnTiltChanged += UpdateTilt;
+        TiltManager.Instance.OnTiltIncreased += UpdateTilt;
         UpdateTilt(TiltManager.Instance.Tilt);
     }
     private void OnDestroy()
     {
         if (TiltManager.Instance != null)
-            TiltManager.Instance.OnTiltChanged -= UpdateTilt;
+            TiltManager.Instance.OnTiltIncreased -= UpdateTilt;
     }
     private void UpdateTilt(int newTilt)
     {

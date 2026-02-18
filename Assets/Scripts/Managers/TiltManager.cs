@@ -11,6 +11,8 @@ public class TiltManager : MonoBehaviour
 
     [SerializeField] private int goodMissedTilt = 10;
 
+    [SerializeField] private int badSmashedTilt = 1;
+
     [SerializeField] private float timeScalePenalty = 0.8f;
 
     [SerializeField] private int maxTilt = 100;
@@ -20,7 +22,9 @@ public class TiltManager : MonoBehaviour
     [SerializeField] FloatingTextSpawner floatingTextSpawner;
     public int MaxTilt => maxTilt;
 
-    public event Action<int> OnTiltChanged;
+    public event Action<int> OnTiltIncreased;
+
+    public event Action<int > OnTiltDecreased;
 
     public event Action OnMaxTiltReached;
 
@@ -43,6 +47,10 @@ public class TiltManager : MonoBehaviour
                 break;        
         }
     }
+    public void HandleSmashed(FallingObjectType type)
+    {
+        DecreaseTilt(badSmashedTilt);
+    }
    
     public void HandleMissed(FallingObjectType type)
     {
@@ -62,13 +70,24 @@ public class TiltManager : MonoBehaviour
                 break;
         }
     }
+    private void DecreaseTilt(int value)
+    {
+        Debug.Log("TiltManager.DecreaseTilt called");
+        Debug.Log("Tilt: " + Tilt);
+        Debug.Log("value: " + value);
 
+        Tilt -= value;
+
+        
+        Debug.Log("Result: " + Tilt);
+        OnTiltDecreased?.Invoke(Tilt);
+    }
     private void AddTilt(int value)
     {
         if (Tilt + value >= 0)
         {
             Tilt += value;
-            OnTiltChanged?.Invoke(Tilt);
+            OnTiltIncreased?.Invoke(Tilt);
             // each time the player gets tilted
             // we slow down time a bit to give them a chance to recover
             Time.timeScale = Time.timeScale * timeScalePenalty;
@@ -76,7 +95,7 @@ public class TiltManager : MonoBehaviour
         else
         {
             Tilt = 0;
-            OnTiltChanged?.Invoke(Tilt);
+            OnTiltIncreased?.Invoke(Tilt);
         }
         if (Tilt >= maxTilt)
         {

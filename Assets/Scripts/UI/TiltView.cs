@@ -16,6 +16,7 @@ public class TiltView : MonoBehaviour
             yield return null;
 
         TiltManager.Instance.OnTiltIncreased += UpdateTilt;
+        TiltManager.Instance.OnTiltDecreased += UpdateTilt;
         UpdateTilt(TiltManager.Instance.Tilt);
     }
     private void OnDestroy()

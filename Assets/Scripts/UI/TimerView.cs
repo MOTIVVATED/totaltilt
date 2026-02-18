@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimerView : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private int seconsdInHour = 20;
 
     private void Start()
     {
@@ -34,8 +35,8 @@ public class TimerView : MonoBehaviour
 
     private void UpdateTimer(float elapsed, float duration)
     {
-        int e = Mathf.FloorToInt(elapsed)/10;
-        int d = Mathf.FloorToInt(duration)/10;
+        int e = Mathf.FloorToInt(elapsed)/seconsdInHour;
+        int d = Mathf.FloorToInt(duration)/seconsdInHour;
         timerText.text = $"{e}/{d}h";
     }
 }

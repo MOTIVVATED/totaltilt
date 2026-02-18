@@ -11,7 +11,7 @@ public class TiltManager : MonoBehaviour
 
     [SerializeField] private int goodMissedTilt = 10;
 
-    [SerializeField] private int badSmashedTilt = 1;
+    [SerializeField] private int badSmashedTilt = -1;
 
     [SerializeField] private float timeScalePenalty = 0.8f;
 
@@ -75,12 +75,14 @@ public class TiltManager : MonoBehaviour
         Debug.Log("TiltManager.DecreaseTilt called");
         Debug.Log("Tilt: " + Tilt);
         Debug.Log("value: " + value);
-
-        Tilt -= value;
-
         
+        if (Tilt + value >= 0)
+        { 
+            Tilt += value;
+            OnTiltDecreased?.Invoke(Tilt);
+        }
+
         Debug.Log("Result: " + Tilt);
-        OnTiltDecreased?.Invoke(Tilt);
     }
     private void AddTilt(int value)
     {

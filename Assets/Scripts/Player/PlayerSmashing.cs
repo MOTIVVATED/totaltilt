@@ -28,7 +28,7 @@ public class PlayerSmashing : MonoBehaviour
 
         if (fallingObject != null) fallingObject.Smash();
 
-        fallingObject.Smash();
+        OnSmash?.Invoke();
     }
 
     private void Smash()

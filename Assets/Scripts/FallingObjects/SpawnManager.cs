@@ -77,7 +77,6 @@ public class SpawnManager : MonoBehaviour
     }
     private void Spawn(FallingObject prefab)
     {
-        Debug.Log("Timescale: " + Time.timeScale);
         FallingObject falling = Instantiate(
             prefab, spawnPoint.position, Quaternion.identity);
 

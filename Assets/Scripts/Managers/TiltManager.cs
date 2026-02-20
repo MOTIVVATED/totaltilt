@@ -72,17 +72,11 @@ public class TiltManager : MonoBehaviour
     }
     private void DecreaseTilt(int value)
     {
-        Debug.Log("TiltManager.DecreaseTilt called");
-        Debug.Log("Tilt: " + Tilt);
-        Debug.Log("value: " + value);
-        
         if (Tilt + value >= 0)
         { 
             Tilt += value;
             OnTiltDecreased?.Invoke(Tilt);
         }
-
-        Debug.Log("Result: " + Tilt);
     }
     private void AddTilt(int value)
     {
@@ -90,8 +84,6 @@ public class TiltManager : MonoBehaviour
         {
             Tilt += value;
             OnTiltIncreased?.Invoke(Tilt);
-            // each time the player gets tilted
-            // we slow down time a bit to give them a chance to recover
             Time.timeScale = Time.timeScale * timeScalePenalty;
         }
         else

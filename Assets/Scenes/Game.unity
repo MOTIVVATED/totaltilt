@@ -1060,7 +1060,7 @@ MonoBehaviour:
   badCaughtTilt: 5
   goodMissedTilt: 10
   badSmashedTilt: -1
-  timeScalePenalty: 0.8
+  timeScalePenalty: 0.95
   maxTilt: 100
   player: {fileID: 437493377}
   floatingTextSpawner: {fileID: 770664212}

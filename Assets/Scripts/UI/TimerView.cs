@@ -17,7 +17,6 @@ public class TimerView : MonoBehaviour
         {
             yield return null;
         }
-
         GameManager.Instance.OnTimeChanged += UpdateTimer;
         UpdateTimer(GameManager.Instance.Timer, GameManager.Instance.GameDuration);
     }

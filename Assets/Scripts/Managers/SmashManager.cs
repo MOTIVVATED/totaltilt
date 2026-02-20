@@ -28,7 +28,6 @@ public class SmashManager : MonoBehaviour
                 OnSmashed?.Invoke();
                 bad = GameObject.FindGameObjectWithTag("bad");
                 floatingTextSpawner.Spawn(bad.transform.position);
-                //tiltManager.HandleSmashed(type);
                 break;
         }
     }
